@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+
+<title>InAppBrowser.addEventListener Example</title> 
+
+</head> 
+
+<body>
+
+
+
+	<!-- <input type="text" id="argTxt" value="" placeholder="http://www.google.com"> -->
+	
+    <select id="argTxt">
+	<option>Select Browser</option>
+    <option>http://www.google.com</option>
+    <option>http://www.mozillafirfox.com</option>
+    <option>http://www.opera.com</option>
+    </select>
+	 <br/>
+	<br/>
+	<input type="submit" id="gotoBtn"/>
+	
+	<!-- <script src="js/jquery1.11.2jquery.min.js"></script> -->
+	
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+   <script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
+   <script type="text/javascript" charset="utf-8"> 
+   
+    document.getElementById("gotoBtn").addEventListener("click", myFunction);
+    //alert("coming into document");
+	
+    function myFunction(){
+    	
+    var textValue=document.getElementById("argTxt").value;
+   // alert(textValue);
+    openBrowser(textValue);
+   
+    }
+    
+    function openBrowser(textValue){ 
+
+    	var ref = window.open(textValue, '_system', 'location=yes'); 
+    	ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); }); 
+    	ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); }); 
+    	ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); }); 
+    	ref.addEventListener('exit', function(event) { alert(event.type); }); 
+    	
+    }   
+    
+	</script>
+	
+
+</body> 
+</html>
